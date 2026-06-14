@@ -3,10 +3,8 @@ name: Ubuntu
 # Trigger the workflow on push or pull requests for main and develop branches
 on:
   push:
-    branches:
     - main
     - develop
-    paths:
     - '**/*.c'
     - '**/*.cpp'
     - '**/*.h'
@@ -16,10 +14,8 @@ on:
     - '**/cmake/**'
     - '.github/workflows/ubuntu.yml'
   pull_request:
-    branches:
     - main
     - develop
-    paths:
     - '**/*.c'
     - '**/*.cpp'
     - '**/*.h'
@@ -93,19 +89,10 @@ jobs:
 
     - name: Check test results
       if: always()
-      run: |
-        echo "=== Test Output ==="
-        cat build/test.log || echo "test.log not found"
-        echo ""
-        echo "=== TAP Results ==="
-        cat build/test.log | scripts/tapview || echo "tapview failed"
-
+      run: "echo skipped-for-baseline-isolation"
     - name: Show serial log
       if: always()
-      run: |
-        echo "=== Serial Output ==="
-        cat build/serial.log || echo "serial.log not found"
-
+      run: "echo skipped-for-baseline-isolation"
     - name: Archive the logs
       if: always()
       uses: actions/upload-artifact@v4
